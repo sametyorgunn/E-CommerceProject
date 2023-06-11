@@ -4,6 +4,7 @@ using E_CommerceProject.Models.ContextDosya;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_CommerceProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230611144005_coklu_Resim_table1")]
+    partial class coklu_Resim_table1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasIndex("UrunId");
 
-                    b.ToTable("CokluResims", (string)null);
+                    b.ToTable("CokluResims");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Kategori", b =>
@@ -70,7 +72,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kategoris", (string)null);
+                    b.ToTable("Kategoris");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Kullanici", b =>
@@ -163,7 +165,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MailBultenis", (string)null);
+                    b.ToTable("MailBultenis");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Menu", b =>
@@ -185,7 +187,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Menus", (string)null);
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Referans", b =>
@@ -204,7 +206,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Referans", (string)null);
+                    b.ToTable("Referans");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Rol", b =>
@@ -262,7 +264,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sosyalMedyas", (string)null);
+                    b.ToTable("sosyalMedyas");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Urun", b =>
@@ -299,7 +301,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasIndex("KategoriId");
 
-                    b.ToTable("Uruns", (string)null);
+                    b.ToTable("Uruns");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

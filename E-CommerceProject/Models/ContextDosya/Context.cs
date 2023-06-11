@@ -16,5 +16,6 @@ namespace E_CommerceProject.Models.ContextDosya
         public DbSet<MailBulteni> MailBultenis { get; set; }
         public DbSet<Referans> Referans { get; set; }
         public DbSet<SosyalMedya> sosyalMedyas { get; set; }
+        public DbSet<CokluResim> CokluResims { get; set; }
     }
 }

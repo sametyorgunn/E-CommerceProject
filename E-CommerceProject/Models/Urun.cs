@@ -16,5 +16,7 @@ namespace E_CommerceProject.Models
 
         public int KategoriId { get; set; }
         public Kategori Kategori { get; set; }
+
+        public List<CokluResim> CokluResim { get; set; }
     }
 }

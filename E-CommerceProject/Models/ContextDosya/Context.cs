@@ -13,5 +13,8 @@ namespace E_CommerceProject.Models.ContextDosya
         public DbSet<Kategori> Kategoris  { get; set; }
         public DbSet<Urun> Uruns { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<MailBulteni> MailBultenis { get; set; }
+        public DbSet<Referans> Referans { get; set; }
+        public DbSet<SosyalMedya> sosyalMedyas { get; set; }
     }
 }

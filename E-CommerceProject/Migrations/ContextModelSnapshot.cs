@@ -41,7 +41,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasIndex("UrunId");
 
-                    b.ToTable("CokluResims", (string)null);
+                    b.ToTable("CokluResims");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Kategori", b =>
@@ -70,7 +70,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kategoris", (string)null);
+                    b.ToTable("Kategoris");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Kullanici", b =>
@@ -163,7 +163,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MailBultenis", (string)null);
+                    b.ToTable("MailBultenis");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Menu", b =>
@@ -185,7 +185,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Menus", (string)null);
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Referans", b =>
@@ -204,7 +204,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Referans", (string)null);
+                    b.ToTable("Referans");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Rol", b =>
@@ -262,7 +262,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sosyalMedyas", (string)null);
+                    b.ToTable("sosyalMedyas");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Urun", b =>
@@ -276,8 +276,17 @@ namespace E_CommerceProject.Migrations
                     b.Property<string>("Aciklama")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Adet")
+                        .HasColumnType("int");
+
                     b.Property<string>("Adi")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AnasayfadaGoster")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Barkod")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Durum")
@@ -299,7 +308,7 @@ namespace E_CommerceProject.Migrations
 
                     b.HasIndex("KategoriId");
 
-                    b.ToTable("Uruns", (string)null);
+                    b.ToTable("Uruns");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -407,9 +416,11 @@ namespace E_CommerceProject.Migrations
 
             modelBuilder.Entity("E_CommerceProject.Models.CokluResim", b =>
                 {
-                    b.HasOne("E_CommerceProject.Models.Urun", null)
+                    b.HasOne("E_CommerceProject.Models.Urun", "Urun")
                         .WithMany("CokluResim")
                         .HasForeignKey("UrunId");
+
+                    b.Navigation("Urun");
                 });
 
             modelBuilder.Entity("E_CommerceProject.Models.Urun", b =>

@@ -1,5 +1,7 @@
 ﻿using E_CommerceProject.Models;
+using E_CommerceProject.Models.ContextDosya;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace E_CommerceProject.Controllers
@@ -15,14 +17,17 @@ namespace E_CommerceProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Context c = new Context();
+            var urunlerAnasayfa = c.Uruns.Include(y=>y.Kategori).Where(x => x.AnasayfadaGoster == 1 && x.Durum == 1 &&x.AnasayfadaGoster!=null).ToList();
+            return View(urunlerAnasayfa);
         }
 
-        public IActionResult Privacy()
+        public IActionResult UrunDetay(int id)
         {
-            return View();
+            Context c = new Context();
+            var urun = c.Uruns.Include(y => y.Kategori).Where(x=>x.Durum == 1 && x.Id == id).FirstOrDefault();
+			return View(urun);
         }
 
-      
     }
 }

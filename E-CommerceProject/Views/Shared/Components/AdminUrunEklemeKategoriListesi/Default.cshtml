@@ -1,0 +1,10 @@
+﻿@using E_CommerceProject.Models
+@model List<Kategori>
+
+<select class="form-select mb-2 select2-accessible" name="KategoriId" data-control="select2" data-hide-search="true" data-placeholder="Seçenek seçin" id="kt_ecommerce_add_category_status_select" data-select2-id="select2-data-kt_ecommerce_add_category_status_select" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+    
+    @foreach(var i in Model)
+    {
+        <option value="@i.Id">@i.Adi</option>
+    }
+</select>

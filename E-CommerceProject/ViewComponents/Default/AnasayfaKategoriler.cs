@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using E_CommerceProject.Models.ContextDosya;
+using Microsoft.AspNetCore.Mvc;
 
 namespace E_CommerceProject.ViewComponents.Default
 {
@@ -6,7 +7,9 @@ namespace E_CommerceProject.ViewComponents.Default
     {
         public IViewComponentResult Invoke()
         {
-            return View();  
+            Context c = new Context();
+            var kategoriler = c.Kategoris.Where(x => x.Durum == 1).ToList();
+            return View(kategoriler);  
         }
     }
 }

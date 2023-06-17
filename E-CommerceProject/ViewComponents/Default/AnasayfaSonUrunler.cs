@@ -9,8 +9,9 @@ namespace E_CommerceProject.ViewComponents.Default
         public IViewComponentResult Invoke()
         {
             Context c = new Context();
-            var sonurunler = c.Uruns.Include(y=>y.Kategori).Where(x => x.Durum == 1).OrderByDescending(x=>x.Id).ToList();
-            return View(sonurunler);
+            var sonurunler = c.Uruns.Include(y => y.Kategori).Where(x => x.Durum == 1).ToList();
+            var list = sonurunler.TakeLast(5).ToList();
+            return View(list);
         }
     }
 }

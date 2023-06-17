@@ -53,12 +53,12 @@ namespace E_CommerceProject.Areas.Admin.Controllers
                     foreach (var i in ResimCoklu)
                     {
                         string uploadsFolder1 = Path.Combine(_environment.WebRootPath, "resimler");
-                        string uniqueFileName1 = Guid.NewGuid().ToString() + "_" + ResimCoklu;
-                        string filePath1 = Path.Combine(uploadsFolder, uniqueFileName);
+                        string uniqueFileName1 = Guid.NewGuid().ToString() + "_" + i.FileName;
+                        string filePath1 = Path.Combine(uploadsFolder1, uniqueFileName1);
 
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        using (var fileStream1 = new FileStream(filePath1, FileMode.Create))
                         {
-                            await urun.Resim.CopyToAsync(fileStream);
+                            await i.CopyToAsync(fileStream1);
                         }
                         CokluResim rsm = new CokluResim
                         {
@@ -73,15 +73,15 @@ namespace E_CommerceProject.Areas.Admin.Controllers
                 }
                 else
                 {
-                    string uploadsFolder = Path.Combine(_environment.WebRootPath, "resimler");
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + urun.Resim.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    string uploadsFolder2 = Path.Combine(_environment.WebRootPath, "resimler");
+                    string uniqueFileName2 = Guid.NewGuid().ToString() + "_" + urun.Resim.FileName;
+                    string filePath2 = Path.Combine(uploadsFolder2, uniqueFileName2);
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    using (var fileStream2 = new FileStream(filePath2, FileMode.Create))
                     {
-                        await urun.Resim.CopyToAsync(fileStream);
+                        await urun.Resim.CopyToAsync(fileStream2);
                     }
-                    urun.ResimUrl = uniqueFileName;
+                    urun.ResimUrl = uniqueFileName2;
                     c.Uruns.Add(urun);
                     c.SaveChanges();
                     return Redirect("/Admin/Urun/UrunEkle");

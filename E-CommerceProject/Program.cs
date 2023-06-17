@@ -1,3 +1,5 @@
+using E_CommerceProject.Models;
+using E_CommerceProject.Models.ContextDosya;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -5,6 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Context>();
+builder.Services.AddIdentity<Kullanici, Rol>(x =>
+{
+    x.Password.RequireUppercase = false;
+    x.Password.RequireLowercase = false;
+
+}).AddEntityFrameworkStores<Context>();
 
 var app = builder.Build();
 

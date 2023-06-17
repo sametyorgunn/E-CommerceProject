@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutNavbarFooter.cshtml";
+}
+
+<div class="col-md-8 col-lg-5">
+	<h2 class="font-weight-bold text-5 mb-0">Register</h2>
+	<form id="frmSignUp" method="post">
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">İsim <span class="text-color-danger">*</span></label>
+				<input type="text" value="" name="Adi" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">Soyisim <span class="text-color-danger">*</span></label>
+				<input type="text" value="" name="Soyadi" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">Mail <span class="text-color-danger">*</span></label>
+				<input type="text" value="" name="Mail" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">Kullanıcı Adı <span class="text-color-danger">*</span></label>
+				<input type="text" value="" name="KullaniciAdi" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">Şifre <span class="text-color-danger">*</span></label>
+				<input type="password" name="Sifre" value="" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<label class="form-label text-color-dark text-3">Şifre Tekrar <span class="text-color-danger">*</span></label>
+				<input type="password" name="SifreTekrar" value="" class="form-control form-control-lg text-4" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<p class="text-2 mb-2">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#" class="text-decoration-none">privacy policy.</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col">
+				<button type="submit" class="btn btn-dark btn-modern w-100 text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">Kayıt Ol</button>
+			</div>
+		</div>
+	</form>
+</div>

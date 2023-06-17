@@ -25,8 +25,15 @@ namespace E_CommerceProject.Controllers
         public IActionResult UrunDetay(int id)
         {
             Context c = new Context();
-            var urun = c.Uruns.Include(y => y.Kategori).Where(x=>x.Durum == 1 && x.Id == id).FirstOrDefault();
+            var urun = c.Uruns.Include(y => y.Kategori).Where(x => x.Durum == 1 && x.Id == id).Include(z=>z.CokluResim).FirstOrDefault();
 			return View(urun);
+        }
+
+        public IActionResult Urunler(int id)
+        {
+			Context c = new Context();
+            var kategorininUrunleri = c.Uruns.Include(y=>y.Kategori).Where(x=>x.KategoriId==id && x.Durum==1).ToList();
+			return View(kategorininUrunleri);
         }
 
     }

@@ -6,6 +6,5 @@ namespace E_CommerceProject.Models
     {
         public string Adi { get; set; }
         public string SoyAdi { get; set; }
-        public string UserName { get; set; }
     }
 }

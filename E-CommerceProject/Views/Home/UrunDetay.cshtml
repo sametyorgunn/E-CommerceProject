@@ -134,10 +134,26 @@
                 <hr>
                 <div class="quantity quantity-lg">
                     <input type="button" class="minus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="-">
-                    <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                    <input type="text" class="input-text qty text" id="adetmiktar" title="Qty" value="1" name="quantity" min="1" step="1">
                     <input type="button" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
                 </div>
-                <a href="/Sepet/Index/@Model.Id" class="btn btn-dark btn-modern text-uppercase bg-color-hover-primary border-color-hover-primary">Sepete Ekle</a>
+                <!--  adet miktarını almak için bir script yazıyoruz. -->
+               
+                <a href="" id="btnsepetekle" class="btn btn-dark btn-modern text-uppercase bg-color-hover-primary border-color-hover-primary btn-sepete-ekle">Sepete Ekle</a>
+                <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+                <script>
+                    $("#btnsepetekle").click(function () {
+                        debugger
+                        var adet = $("#adetmiktar").val()
+                        var url = "/Sepet/SepeteEkle/@Model.Id/" + adet
+                        $("#btnsepetekle").attr("href", url)
+
+                        .then(function(){
+                            window.location.href="/Sepet/Index"
+                        })
+                    });
+
+                </script>
                 <hr>
             </form>
 

@@ -4,6 +4,7 @@ using E_CommerceProject.Models.ContextDosya;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_CommerceProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230619191210_sepet_toplam")]
+    partial class sepet_toplam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,6 +248,9 @@ namespace E_CommerceProject.Migrations
 
                     b.Property<int?>("Adet")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("Toplam")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UrunId")
                         .HasColumnType("int");

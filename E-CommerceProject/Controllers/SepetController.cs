@@ -47,12 +47,11 @@ namespace E_CommerceProject.Controllers
             return RedirectToAction("Index", "Sepet");
         }
 
-        public IActionResult SepetAdetGuncelle(int adet,int sepetid,int urunid)
+        public IActionResult SepetAdetGuncelleArti(int adet,int sepetid,int urunid,decimal sepettoplam)
         {
             Context c = new Context();
             var username = User.Identity.Name;
             var userId = c.Users.Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-
             Sepet sepet = new Sepet
             {
                 Id = sepetid,
@@ -64,6 +63,37 @@ namespace E_CommerceProject.Controllers
             c.SaveChanges();
             return RedirectToAction("Index", "Sepet");
         }
-      
+        public IActionResult SepetAdetGuncelleEksi(int adet, int sepetid, int urunid,decimal sepettoplam)
+        {
+            Context c = new Context();
+            var username = User.Identity.Name;
+            var userId = c.Users.Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            
+            Sepet sepet = new Sepet
+            {
+                Id = sepetid,
+                Adet = adet - 1,
+                UserId = userId,
+                UrunId = urunid
+            };
+            c.Sepets.Update(sepet);
+            c.SaveChanges();
+            return RedirectToAction("Index", "Sepet");
+
+            //c.Sepets.Attach(sepet);
+            //c.Entry(sepet).Property(x => x.Toplam).IsModified = true;
+            //c.SaveChanges();
+        }
+
+        public IActionResult UrunSil(int id)
+        {
+            Context c = new Context();
+            var urun = c.Sepets.Where(x => x.UrunId == id).FirstOrDefault();
+            c.Sepets.Remove(urun);
+            c.SaveChanges();
+            return RedirectToAction("Index","Sepet");
+        }
+
+
     }
 }

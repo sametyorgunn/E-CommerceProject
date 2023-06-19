@@ -19,7 +19,8 @@ namespace E_CommerceProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CokluResims", x => x.Id);
-                });
+
+        });
 
             migrationBuilder.CreateTable(
                 name: "MailBultenis",

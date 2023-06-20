@@ -2,6 +2,7 @@
 using E_CommerceProject.Models;
 using E_CommerceProject.Models.ContextDosya;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
 namespace E_CommerceProject.Controllers
@@ -11,13 +12,22 @@ namespace E_CommerceProject.Controllers
 
         public IActionResult Index()
         {
-			return View();
+            Context c = new Context();
+            var username= User.Identity.Name;
+            var userid = c.Users.Where(x=>x.UserName==username).Select(y=>y.Id).FirstOrDefault();
+            var sepet = c.Sepets.Include(x => x.Urun).Where(x => x.UserId == userid).ToList();
+            decimal toplamsepet = 0;
+            foreach(var i in sepet)
+            {
+                toplamsepet += Convert.ToDecimal(i.Urun.indirimliFiyat) * Convert.ToDecimal(i.Adet);
+            }
+            ViewBag.sepettoplam = toplamsepet;
+			return View(sepet);
         }
         [HttpPost]
         public IActionResult Index(SiparisEkleDto dto)
         {
             Context c = new Context();
-
             var username = User.Identity.Name;
             var userid = c.Users.Where(x=>x.UserName== username).Select(y=>y.Id).FirstOrDefault();
             var sepet = c.Sepets.Where(x => x.UserId == userid).ToList();
@@ -29,8 +39,6 @@ namespace E_CommerceProject.Controllers
             }
 
 
-            var sepettoplam = HttpContext.Session.GetString("sepettoplam");
-            decimal sepet_toplam = Convert.ToDecimal(sepettoplam);
             Siparis siparis = new Siparis
             {
                 isim = dto.isim,
@@ -43,20 +51,17 @@ namespace E_CommerceProject.Controllers
                 siparis_notu = dto.siparis_notu,
                 odeme_turu = dto.odeme_turu,
                 SiparisKodu = dto.SiparisKodu,
-                Siparis_toplam = sepet_toplam
-                //Urun =  uruns,
+                Siparis_toplam = dto.SepetToplam
             };
             c.siparis.Add(siparis);
             c.SaveChanges();
-            return View();
-        }
-		[HttpPost]
-		public IActionResult FiyatTut(decimal toplam)
-        {
-            HttpContext.Session.SetString("sepettoplam",Convert.ToString(toplam));
             return RedirectToAction("Index","Siparis");
-
         }
+		//[HttpPost]
+		//public IActionResult FiyatTut(decimal toplam)
+  //      {
+  //          return RedirectToAction("Index","Siparis");
+  //      }
 
 	}
 }

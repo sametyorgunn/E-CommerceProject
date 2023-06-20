@@ -12,5 +12,6 @@
         public string? Mail { get; set; }
         public string? siparis_notu { get; set; }
         public string? SiparisKodu { get; set; }
+        public decimal SepetToplam { get; set; }
     }
 }

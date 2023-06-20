@@ -18,7 +18,7 @@ namespace E_CommerceProject.Controllers
         public IActionResult Index()
         {
             Context c = new Context();
-            var urunlerAnasayfa = c.Uruns.Include(y=>y.Kategori).Where(x => x.AnasayfadaGoster == 1 && x.Durum == 1 &&x.AnasayfadaGoster!=null).ToList();
+            var urunlerAnasayfa = c.Uruns.Include(y=>y.Kategori).Where(x => x.AnasayfadaGoster == 1 && x.Durum == 1 && x.AnasayfadaGoster ==1).ToList();
             return View(urunlerAnasayfa);
         }
 
@@ -26,7 +26,7 @@ namespace E_CommerceProject.Controllers
         {
             Context c = new Context();
             var urun = c.Uruns.Include(y => y.Kategori).Where(x => x.Durum == 1 && x.Id == id).Include(z=>z.CokluResim).FirstOrDefault();
-			return View(urun);
+            return View(urun);
         }
 
         public IActionResult Urunler(int id)

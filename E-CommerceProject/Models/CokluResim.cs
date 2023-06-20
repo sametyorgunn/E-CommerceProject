@@ -5,7 +5,7 @@ namespace E_CommerceProject.Models
     public class CokluResim
     {
         public int Id { get; set; }
-        public string ResimYol { get; set; }
+        public string? ResimYol { get; set; }
         [NotMapped]
         public IFormFile? Resim { get; set; }
 

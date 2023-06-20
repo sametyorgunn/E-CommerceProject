@@ -27,8 +27,8 @@ namespace E_CommerceProject.Controllers
             return View(sepets);
 
         }
-        [Route("/Sepet/SepeteEkle/{id}/{adet}")]
-        public IActionResult SepeteEkle(int id,int adet)
+        [HttpPost]
+        public IActionResult SepeteEkle(int id,int adet,string fiyat,string indirimlifiyat,string urunadi)
         {
             
             Context c = new Context();
@@ -38,7 +38,10 @@ namespace E_CommerceProject.Controllers
             Sepet sepet = new Sepet
             {
                 UrunId= id,
-                Adet= adet,
+                UrunAdi =urunadi,
+                Urun_fiyat = Convert.ToDecimal(fiyat),
+                Urun_indirimli_fiyati = Convert.ToDecimal(indirimlifiyat),
+                Adet = adet,
                 UserId = userId
             };
             c.Sepets.Add(sepet);

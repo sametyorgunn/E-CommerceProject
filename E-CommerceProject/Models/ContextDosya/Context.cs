@@ -18,7 +18,8 @@ namespace E_CommerceProject.Models.ContextDosya
         public DbSet<SosyalMedya> sosyalMedyas { get; set; }
         public DbSet<CokluResim> CokluResims { get; set; }
         public DbSet<Sepet> Sepets { get; set; }
+        public DbSet<Siparis> siparis { get; set; }
 
-       
+
     }
 }

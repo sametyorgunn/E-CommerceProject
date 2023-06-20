@@ -226,6 +226,7 @@
 </script>
 <script>
     $("#odemeyegecbtn").click(function(){
+        debugger
         var total = $("#toplamtutar").text()
         $.ajax({
             url: "/Siparis/FiyatTut/",
@@ -235,11 +236,11 @@
 
             },
             success: function (response) {
-                
+                window.location.href = "/Siparis/Index/"
 
             },
             error: function (xhr, status, error) {
-                location.reload();
+                window.location.href = "/Siparis/Index/"
 
             }
 

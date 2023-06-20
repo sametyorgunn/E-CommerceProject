@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <h1 class="mb-0 font-weight-bold text-7">@Model.Adi</h1>
+            <h1 class="mb-0 font-weight-bold text-7" id="urunadi">@Model.Adi</h1>
 
             <div class="pb-0 clearfix d-flex align-items-center">
                 <div title="Rated 3 out of 5" class="float-start">
@@ -89,18 +89,17 @@
             </div>
 
             <p class="price mb-3">
-                <span class="sale text-color-dark">@Model.indirimliFiyat</span>
-                <span class="amount">@Model.Fiyat</span>
+                <span class="sale text-color-dark" id="indirimlifiyat">@Model.indirimliFiyat</span>
+                <span class="amount" id="normalfiyat">@Model.Fiyat</span>
             </p>
 
             <p class="text-3-5 mb-3">@Model.Aciklama</p>
 
             <ul class="list list-unstyled text-2">
-                <li class="mb-0">Stok: <strong class="text-color-dark">AVAILABLE</strong></li>
+                <li class="mb-0">Stok: <strong class="text-color-dark">STOKTA</strong></li>
                 <li class="mb-0">Barkod: <strong class="text-color-dark">1234567890</strong></li>
             </ul>
 
-            <form enctype="multipart/form-data" method="post" class="cart" action="shop-cart.html">
                 <table class="table table-borderless" style="max-width: 300px;">
                     <tbody>
                         <tr>
@@ -138,24 +137,11 @@
                     <input type="button" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
                 </div>
                 <!--  adet miktarını almak için bir script yazıyoruz. -->
-               
-                <a href="" id="btnsepetekle" class="btn btn-dark btn-modern text-uppercase bg-color-hover-primary border-color-hover-primary btn-sepete-ekle">Sepete Ekle</a>
-                <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-                <script>
-                    $("#btnsepetekle").click(function () {
-                        debugger
-                        var adet = $("#adetmiktar").val()
-                        var url = "/Sepet/SepeteEkle/@Model.Id/" + adet
-                        $("#btnsepetekle").attr("href", url)
 
-                        .then(function(){
-                            window.location.href="/Sepet/Index"
-                        })
-                    });
+            <button id="btnsepetekle" class="btn btn-dark btn-modern text-uppercase bg-color-hover-primary border-color-hover-primary btn-sepete-ekle">Sepete Ekle</button>
 
-                </script>
                 <hr>
-            </form>
+
 
             <div class="d-flex align-items-center">
                 <ul class="social-icons social-icons-medium social-icons-clean-with-border social-icons-clean-with-border-border-grey social-icons-clean-with-border-icon-dark me-3 mb-0">
@@ -333,9 +319,45 @@
     </div>
 </div>
 
-
+<input hidden id="urunid" value="@Model.Id"/>
 
 <hr class="my-5">
 
 
 
+ <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+    $("#btnsepetekle").click(function () {
+        debugger
+        var adet = $("#adetmiktar").val()
+        var fiyat = $("#normalfiyat").text()
+        var indirimlifiyat = $("#indirimlifiyat").text()
+        var urunadi = $("#urunadi").text()
+        var urunid = $("#urunid").val()
+
+        $.ajax({
+            
+            url: "/Sepet/SepeteEkle/",
+            type: "POST",
+            data: {
+                adet: adet,
+                fiyat:fiyat,
+                indirimlifiyat:indirimlifiyat,
+                urunadi:urunadi,
+                id:urunid
+
+            },
+            success: function (response) {
+                window.location.href = "/Sepet/Index/"
+
+            },
+            error: function (xhr, status, error) {
+                window.location.href = "/Sepet/Index/"
+
+            }
+
+        });
+
+    });
+
+</script>

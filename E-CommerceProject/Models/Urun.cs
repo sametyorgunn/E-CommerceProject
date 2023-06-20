@@ -21,6 +21,6 @@ namespace E_CommerceProject.Models
         public int? AnasayfadaGoster { get; set; }
         public Kategori Kategori { get; set; }
 
-        public List<CokluResim> CokluResim { get; set; }
+        public List<CokluResim>? CokluResim { get; set; }
     }
 }
